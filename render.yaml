@@ -37,7 +37,6 @@ services:
   # Frontend - Static React App
   - type: web
     name: releasepilot-ui
-    plan: free
     runtime: static
     buildCommand: cd frontend && npm ci && npm run build
     staticPublishPath: frontend/dist
