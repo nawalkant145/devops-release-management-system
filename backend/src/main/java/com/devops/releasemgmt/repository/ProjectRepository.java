@@ -1,0 +1,10 @@
+package com.devops.releasemgmt.repository;
+
+import com.devops.releasemgmt.entity.Project;
+import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
+
+public interface ProjectRepository extends JpaRepository<Project, Long> {
+    boolean existsByName(String name);
+    List<Project> findAllByOrderByUpdatedAtDesc();
+}
