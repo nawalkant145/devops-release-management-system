@@ -14,7 +14,19 @@ services:
     dockerContext: ./backend
     envVars:
       - key: SPRING_DATASOURCE_URL
-        value: jdbc:postgresql://release-mgmt-db:5432/release_mgmt
+        value: jdbc:postgresql://${RELEASE_MGMT_DB_HOST}:${RELEASE_MGMT_DB_PORT}/${RELEASE_MGMT_DB_DATABASE}
+      - key: RELEASE_MGMT_DB_HOST
+        fromDatabase:
+          name: release-mgmt-db
+          property: host
+      - key: RELEASE_MGMT_DB_PORT
+        fromDatabase:
+          name: release-mgmt-db
+          property: port
+      - key: RELEASE_MGMT_DB_DATABASE
+        fromDatabase:
+          name: release-mgmt-db
+          property: database
       - key: SPRING_DATASOURCE_USERNAME
         fromDatabase:
           name: release-mgmt-db
